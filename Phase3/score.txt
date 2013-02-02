@@ -1,0 +1,10 @@
+14 of 15
+
+FYI - Be sure to watch out for methods (from older or newer project phases) that accept parameters, but no validation is done on the parameters before
+they are used. This is not a good practice and can lead to issues ranging from inconsistent application performance, up to crashing the application.
+Any method that accepts parameters should first verify the integrity of that parameter data before using it.
+
+(-1) You have a set of non-applicable methods in your Publishers that do nothing - your design results in not-always-applicable methods requiring
+implementation in your various publishers. This is not a good aspect of your design and should be revisited in order to rectify this problem.
+
+Otherwise, no issues - good job!

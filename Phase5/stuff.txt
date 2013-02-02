@@ -1,0 +1,60 @@
+
+//  Requests the opening of the market display if the user is connected.
+public void showMarketDisplay();
+
+// Allows the User object to submit a new Order request
+public String submitOrder(String product, Price price, int volume, BookSide side);
+
+// Allows the User object to submit a new Order Cancel request
+public void submitOrderCancel(String product, BookSide side, String orderId);
+
+// Allows the User object to submit a new Quote request
+public void submitQuote(String product, Price buyPrice, int buyVolume, Price sellPrice, int sellVolume);
+
+// Allows the User object to submit a new Quote Cancel request
+public void submitQuoteCancel(String product);
+
+// Allows the User object to subscribe for Current Market for the specified Stock.
+public void subscribeCurrentMarket(String product);
+
+// Allows the User object to subscribe for Last Sale for the specified Stock.
+public void subscribeLastSale(String product);
+
+// Allows the User object to subscribe for Messages for the specified Stock.
+public void subscribeMessages(String product);
+
+// Allows the User object to subscribe for Ticker for the specified Stock. 
+public void subscribeTicker(String product);
+
+// Returns the value of the all Sock the User owns (has bought but not sold) 
+public Price getAllStockValue();
+
+// Returns the difference between cost of all stock purchases and stock sales
+public Price getAccountCosts();
+
+// Returns the difference between current value of all stocks owned and the account costs 
+public Price getNetAccountValue();
+
+// Allows the User object to submit a Book Depth request for the specified stock. 
+public String[][] getBookDepth(String product);
+
+// Allows the User object to query the market state (OPEN, PREOPEN, CLOSED).
+String getMarketState();
+
+// Returns a list of order id’s for the orders this user has submitted.
+public ArrayList<TradableId> getOrderIds();
+
+// Returns a list of the stock products available in the trading system.
+public ArrayList<String> getProductList();
+
+// Returns the value of the specified stock that this user owns
+public Price getStockPositionValue(String sym);
+
+// Returns the volume of the specified stock that this user owns
+public int getStockPositionVolume(String product);
+
+// Returns a list of all the Stocks the user owns
+public ArrayList<String> getHoldings();
+
+// Gets a list of DTO’s containing information on all Orders for this user for the specified product with remaining volume.
+public ArrayList<TradableDTO> getOrdersWithRemainingQty(String product);

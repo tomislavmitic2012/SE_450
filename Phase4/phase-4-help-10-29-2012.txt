@@ -1,0 +1,56 @@
+Hi,
+
+This one is going to be tricky to find. Even when the resulting book in step 21 looks ok (empty) I see you are missing a cancel in step 21. I expect to see these:
+
+User REX Received Cancel Message: User: REX, Product: GOOG, Price: $641.14, Volume: 555, Details: BUY Order Cancelled, Side: BUY, Id: REXGOOG$641.14105982888527284
+User REX Received Cancel Message: User: REX, Product: GOOG, Price: $641.13, Volume: 444, Details: BUY Order Cancelled, Side: BUY, Id: REXGOOG$641.13105982887739275
+User REX Received Cancel Message: User: REX, Product: GOOG, Price: $641.12, Volume: 333, Details: BUY Order Cancelled, Side: BUY, Id: REXGOOG$641.12105982886980138
+User REX Received Cancel Message: User: REX, Product: GOOG, Price: $641.11, Volume: 222, Details: BUY Order Cancelled, Side: BUY, Id: REXGOOG$641.11105982886213301
+User ANN Received Cancel Message: User: ANN, Product: GOOG, Price: $641.10, Volume: 120, Details: Quote BUY-Side Cancelled, Side: BUY, Id: ANNGOOG105982883377314
+User REX Received Cancel Message: User: REX, Product: GOOG, Price: $641.10, Volume: 111, Details: BUY Order Cancelled, Side: BUY, Id: REXGOOG$641.10105982885392185
+
+(5 orders, one quote side)
+
+In yours I see:
+User ANN Received Cancel Message: User: ANN, Product: GOOG, Price: $641.10, Volume: 120, Details: Quote BUY-Side Cancelled., Side: BUY, ID: ANNGOOG1053215122462115
+User REX Received Cancel Message: User: REX, Product: GOOG, Price: $641.11, Volume: 222, Details: Canceling order with order ID: REXGOOG$641.111053215125484036, Side: BUY, ID: REXGOOG$641.111053215125484036
+User REX Received Cancel Message: User: REX, Product: GOOG, Price: $641.14, Volume: 555, Details: Canceling order with order ID: REXGOOG$641.141053215128037079, Side: BUY, ID: REXGOOG$641.141053215128037079
+User REX Received Cancel Message: User: REX, Product: GOOG, Price: $641.12, Volume: 333, Details: Canceling order with order ID: REXGOOG$641.121053215126351732, Side: BUY, ID: REXGOOG$641.121053215126351732
+User REX Received Cancel Message: User: REX, Product: GOOG, Price: $641.13, Volume: 444, Details: Canceling order with order ID: REXGOOG$641.131053215127185551, Side: BUY, ID: REXGOOG$641.131053215127185551
+
+(4 orders and one quote side)
+The REX Order for GOOG at price: $641.10 with volume: 111 is missing. The strange part is sometimes that 111 qty order shows up in the book at the end, sometimes not.
+
+This is NOT a race condition, as there is only one thread working here.
+
+I'm pretty sure the problem is that in ProductBookSide's cancelAll method, you are iterating through the same collection you are modifying. From time to time it ends up tripping over itself and results in skipping over an entry. You should never modify a collection while iterating through it.  Instead, you need to make a copy of the collection you are working with and iterate over the copy. When modification occurs, it will occur on the REAL list, and not the copy you are iterating over.
+
+The following is *something* like what you should do - (save the current method - comment it out) and try to rework the method more like this:
+
+        // Make a temp list of the Prices - the keys
+        ArrayList<Price> prices = new ArrayList<Price>(bookEntries.keySet());
+        
+        // Make a copy of the bookEntries HashMap.
+        HashMap<Price, ArrayList<Tradable>> tempHash = new HashMap<>(bookEntries);
+
+        // Now iterate over the copies - be the cancels will be applied to the real original lists
+        for (Price p : prices) {
+
+            ArrayList<Tradable> tempList = new ArrayList<>(tempHash.get(p));
+
+            for (Tradable t : tempList) {
+                if (t.getIsQuote()) {
+                    submitQuoteCancel(t.getUser());
+                } else {
+                    try {
+                        submitOrderCancel(t.getId());
+                    } catch (OrderNotFoundException | DataValidationException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }
+
+That should fix the issue.
+
+-C

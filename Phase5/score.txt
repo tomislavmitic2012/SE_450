@@ -1,0 +1,15 @@
+Your grade:	14
+
+Comment	
+14 of 15
+
+(-1) You have several methods (i.e., UserImpl's acceptMessage) where parameters are accepted and used without error checking.
+
+Otherwise, no issues. Good job!
+
+FYI - You have a few javadoc warnings:
+
+src\client\UserImpl.java:259: warning - @return tag has no arguments.
+src\usercommand\UserCommandService.java:179: warning - @return tag has no arguments.
+src\usercommand\UserCommandService.java:199: warning - @return tag has no arguments.
+src\usercommand\UserCommandService.java:230: warning - @return tag has no arguments.

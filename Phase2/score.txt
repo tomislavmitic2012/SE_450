@@ -1,0 +1,14 @@
+16 of 15 (Extra point for use of delegation)
+
+FYI - If you are using delegation in your classes (to the TradableImpl) you should NOT hard-code the TradableImpl name in your Order and QuoteSide.
+You are hard-coded to one kind of delegate as a result. Use a factory that returns Tradable object.
+
+FYI - All data members should have "set" methods (modifiers) that error check the value, throw a custom exception if the value is unacceptable,
+then otherwise they set the data member to the new value. These should only be public if the application requires it, otherwise they should
+remain private. All constructors should rely on their data member's "set" methods to do the data member assignments.
+Error checking and assignments should not appear in a constructor. This should be fixed by Phase 3 or points might be lost.
+
+FYI - You are representing the Quote object's QuoteSide's as Tradables, which forces you to cast to QuoteSide in Quote's getQuoteSide method which is
+undesirable.
+
+Otherwise no issues, good job!

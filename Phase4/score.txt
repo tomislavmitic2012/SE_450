@@ -1,0 +1,11 @@
+14 of 15
+
+(-1) Many of your methods in this part accept parameters, but you are directly using those parameters without
+checking them. As a result, your application can easily crash if invalid or null data were passed into your
+methods.
+
+FYI - you have a javadoc warning:
+
+DepaulStockExchange\src\tradeprocessing\productbook\ProductBookSide.java:294: warning - @return tag cannot be used in method with void return type.
+
+Otherwise, no issues. Good job!

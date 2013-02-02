@@ -1,0 +1,19 @@
+13.5 of 15
+
+(-1.5) You are creating Price objects in your Price class without using the PriceFactory in multiple places. This allows the creation of multiple Price objects of the same value. This completely defeats the whole purpose of using the Flyweight pattern.
+Instead, you should ask the PriceFactory to do that:
+
+public Price add(Price p) throws InvalidPriceOperation {
+  if (self.isMarket()) {
+    throw new InvalidPriceOperation("Invalid Price Operation in add: "
+      + "Current Price is a Market Price!");
+  }
+  if (p.isMarket()) {
+    throw new InvalidPriceOperation("Invalid Price Operation in add: "
+      + "Price passed in is a Market Price!");
+  }
+  return PriceFactory.makeLimitPrice(self.value + p.value);
+}
+
+
+Otherwise, no issues - good job!
