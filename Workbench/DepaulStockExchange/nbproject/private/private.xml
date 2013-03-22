@@ -10,16 +10,4 @@
             </bookmark>
         </file>
     </editor-bookmarks>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/GeneralMarketMessageImpl.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/GeneralMarketMessage.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/MarketMessageImpl.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/StateOfMarket.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/FillMessageImpl.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/FillMessage.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/CancelMessageImpl.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/MarketMessage.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/MessageFactory.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/CancelMessage.java</file>
-    </open-files>
 </project-private>
