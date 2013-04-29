@@ -10,12 +10,4 @@
             </bookmark>
         </file>
     </editor-bookmarks>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/MessagePublisher.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/MessagePublisherSpecific.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/MessagePublisherCommon.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/CurrentMarketPublisherSpecific.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/CurrentMarketPublisher.java</file>
-        <file>file:/home/tmitic/Depaul/SE_450/Project/Workbench/DepaulStockExchange/src/publishers/messages/MarketDataDTO.java</file>
-    </open-files>
 </project-private>
